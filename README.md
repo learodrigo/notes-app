@@ -2,6 +2,8 @@
 This simple application runs node scripts and writes into `notes.json` notes that can be removed, append, list and read
 
 ## Commands
+In order to use the app, `npm i` and use the next commands with node
+
 ### add
 ```javascript
 node app.js add --title="My title" --body="My body"
