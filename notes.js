@@ -75,11 +75,14 @@ const getNotes = () => {
         return
     }
 
-    for (const note of notes) {
+    console.log('')
+    console.log(chalk.green.inverse(' Your notes '))
+
+    notes.forEach((note) => {
         console.log('-----------------')
-        console.log(`Note ${note.title}`)
-        console.log(`Body ${note.body}`)
-    }
+        console.log(`${chalk.bold('Note')} ${note.title}`)
+        console.log(`${chalk.bold('Body')} ${note.body}`)
+    })
 
     console.log('-----------------')
 }
