@@ -83,6 +83,8 @@ const getNotes = () => {
         console.log(`Body ${note.body}`)
         console.log(`Body ${note.body}`)
     }
+
+    console.log('-----------------')
 }
 
 module.exports = {
