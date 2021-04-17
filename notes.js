@@ -1,3 +1,4 @@
+const chalk = require('chalk')
 const fs = require('fs')
 
 const NOTES_FILE = 'notes.json'
@@ -29,15 +30,33 @@ const addNote = ({ title, body }) => {
     if (!duplicateNotes.length) {
         notes.push({ title, body })
         saveNotes(notes)
-        console.log('New note added')
+        const message = chalk.green.inverse(`Note "${title} added"`)
+        console.log(message)
     }
     else {
-        console.log('Note title in use')
+        const message = chalk.red.inverse(`Title "${title}" is already in use`)
+        console.log(message)
     }
+}
 
+const removeNote = ({ title }) => {
+    const notes = loadNotes()
+
+    const notesToKeep = notes.filter(note => note.title !== title)
+
+    if (notes.length > notesToKeep.length) {
+        saveNotes(notesToKeep)
+        const message = chalk.green.inverse(`Note "${title}" removed`)
+        console.log(message)
+    }
+    else {
+        const message = chalk.red.inverse(`Note "${title}" couldn't be found`)
+        console.log(message)
+    }
 }
 
 module.exports = {
     getNotes,
-    addNote
+    addNote,
+    removeNote
 }
