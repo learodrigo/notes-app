@@ -19,8 +19,6 @@ const saveNotes = (notes) => {
     fs.writeFileSync(NOTES_FILE, jsonData)
 }
 
-const getNotes = () => 'Your notes...'
-
 const addNote = ({ title, body }) => {
     const notes = loadNotes()
     const duplicateNotes = notes.filter(note => {
@@ -67,6 +65,23 @@ const readNote = ({ title }) => {
     else {
         const message = chalk.red.inverse(`Note "${title}" couldn't be found`)
         console.log(message)
+    }
+}
+
+const getNotes = () => {
+    const notes = loadNotes()
+
+    if (!notes.length) {
+        const message = chalk.red.inverse('Looks like there are no notes yet, try adding one first')
+        console.log(message)
+        return
+    }
+
+    for (const note of notes) {
+        console.log('-----------------')
+        console.log(`Note ${note.title}`)
+        console.log(`Body ${note.body}`)
+        console.log(`Body ${note.body}`)
     }
 }
 
