@@ -54,11 +54,7 @@ const removeNote = ({ title }) => {
 const readNote = ({ title }) => {
     const notes = loadNotes()
 
-    const note = notes.find(note => {
-        if (note.title === title) {
-            return note
-        }
-    })
+    const note = notes.find(note => note.title === title)
 
     if (note) {
         console.log(`${chalk.bold('Note')} ${note.title}`)
