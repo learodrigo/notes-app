@@ -1,7 +1,6 @@
-const chalk = require('chalk')
 const yargs = require('yargs')
 
-const getNotes = require('./notes')
+const { getNotes, addNote } = require('./notes')
 
 // add command
 yargs.command({
@@ -19,10 +18,7 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: (argv) => {
-        console.log(`Title: ${argv.title}`)
-        console.log(`Body: ${argv.body}`)
-    }
+    handler: (argv) => addNote(argv)
 })
 
 // remove command
