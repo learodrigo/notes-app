@@ -81,7 +81,6 @@ const getNotes = () => {
         console.log('-----------------')
         console.log(`Note ${note.title}`)
         console.log(`Body ${note.body}`)
-        console.log(`Body ${note.body}`)
     }
 
     console.log('-----------------')
