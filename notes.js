@@ -21,9 +21,9 @@ const saveNotes = (notes) => {
 
 const addNote = ({ title, body }) => {
     const notes = loadNotes()
-    const duplicateNotes = notes.filter(note => title === note.title)
+    const duplicateNote = notes.find(note => title === note.title)
 
-    if (!duplicateNotes.length) {
+    if (!duplicateNote) {
         notes.push({ title, body })
         saveNotes(notes)
         const message = chalk.green.inverse(`Note "${title} added"`)
@@ -54,11 +54,15 @@ const removeNote = ({ title }) => {
 const readNote = ({ title }) => {
     const notes = loadNotes()
 
-    const note = notes.filter(note => note.title === title)
+    const note = notes.find(note => {
+        if (note.title === title) {
+            return note
+        }
+    })
 
-    if (note.length) {
-        console.log(`Note ${note[0].title}`)
-        console.log(`Body ${note[0].body}`)
+    if (note) {
+        console.log(`Note ${note.title}`)
+        console.log(`Body ${note.body}`)
     }
     else {
         const message = chalk.red.inverse(`Note "${title}" couldn't be found`)
