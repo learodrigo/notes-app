@@ -21,9 +21,7 @@ const saveNotes = (notes) => {
 
 const addNote = ({ title, body }) => {
     const notes = loadNotes()
-    const duplicateNotes = notes.filter(note => {
-        return title === note.title
-    })
+    const duplicateNotes = notes.filter(note => title === note.title)
 
     if (!duplicateNotes.length) {
         notes.push({ title, body })
