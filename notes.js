@@ -61,8 +61,8 @@ const readNote = ({ title }) => {
     })
 
     if (note) {
-        console.log(`Note ${note.title}`)
-        console.log(`Body ${note.body}`)
+        console.log(`${chalk.bold('Note')} ${note.title}`)
+        console.log(`${chalk.bold('Body')} ${note.body}`)
     }
     else {
         const message = chalk.red.inverse(`Note "${title}" couldn't be found`)
