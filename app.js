@@ -1,6 +1,6 @@
 const yargs = require('yargs')
 
-const { getNotes, addNote, removeNote } = require('./notes')
+const { getNotes, addNote, removeNote, readNote } = require('./notes')
 
 // add command
 yargs.command({
@@ -36,23 +36,24 @@ yargs.command({
 })
 
 // read command
-const readHandler = () => {
-    console.log('Note 123')
-}
 yargs.command({
     command: 'read',
     describe: 'Reads specific note',
-    handler: readHandler
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: (argv) => readNote(argv)
 })
 
 // list command
-const listHandler = () => {
-    console.log('All notes')
-}
 yargs.command({
     command: 'list',
     describe: 'Lists all notes',
-    handler: listHandler
+    handler: (argv) => getNotes(argv)
 })
 
 yargs.parse()

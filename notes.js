@@ -55,8 +55,24 @@ const removeNote = ({ title }) => {
     }
 }
 
+const readNote = ({ title }) => {
+    const notes = loadNotes()
+
+    const note = notes.filter(note => note.title === title)
+
+    if (note.length) {
+        console.log(`Note ${note[0].title}`)
+        console.log(`Body ${note[0].body}`)
+    }
+    else {
+        const message = chalk.red.inverse(`Note "${title}" couldn't be found`)
+        console.log(message)
+    }
+}
+
 module.exports = {
     getNotes,
     addNote,
-    removeNote
+    removeNote,
+    readNote
 }
